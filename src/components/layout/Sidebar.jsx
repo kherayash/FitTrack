@@ -8,23 +8,29 @@ import {
   CircleUserRound
 
 } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export default function Sidebar(){
     const sideBarItems = [
                         {name : "Dashboard",
-                         icon: LayoutDashboard
+                         icon: LayoutDashboard,
+                         path: "/"
                         },
                         {name : "Meal Tracker",
-                            icon:  UtensilsCrossed
+                            icon:  UtensilsCrossed,
+                            path: "/meals"
                         },
-                        {name : "Workout",
-                         icon:  Dumbbell
+                        {name : "Workouts",
+                         icon:  Dumbbell,
+                         path: "/workouts"
                         },
                         { name : "Goals",
-                         icon: Target
+                         icon: Target,
+                         path: "/goals"
                         },
                         {name : "Analytics",
-                        icon:  ChartColumn
+                        icon:  ChartColumn,
+                        path: "/analytics"
                         }
                                              ];
                                             
@@ -43,19 +49,23 @@ export default function Sidebar(){
       const Icon = item.icon;
 
       return (
-        <div
-          key={index}
-          className="flex items-center w-full h-12  gap-4 px-6  text-black opacity-60 hover:opacity-100 hover:bg-[oklch(87.2%_0.01_258.338)]  hover:rounded-lg cursor-pointer transition-colors duration-200"
-        >
-          &nbsp; <Icon size={22} />
-                 
-          <div className="px-2 ">
+        <NavLink
+            key={index}
+            to={item.path}
+            className={({ isActive }) =>
+            `flex items-center w-full h-12 gap-4 px-6 text-black transition-colors duration-200 cursor-pointer ${
+          isActive
+             ? "opacity-100 bg-emerald-100 text-emerald-700 font-semibold rounded-lg"
+             : "opacity-60 hover:opacity-100 hover:bg-gray-100 hover:rounded-lg"}`
+            }>
+
+                      
+                <Icon size={22} />
+
+            <div className="px-2">
                 {item.name}
-            
-          </div>
-          
-        </div>
-        
+            </div>
+            </NavLink>
       );
     })}
     <div className="absolute bottom-0 left-0 w-full px-5 py-4 hover:bg-[oklch(87.2%_0.01_258.338)] cursor-pointer hover:rounded-lg transition-colors duration-200">

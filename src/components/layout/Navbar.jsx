@@ -8,7 +8,7 @@ export default function Navbar(){
                  <h1 className="text-2xl font-semibold">Dashboard</h1>
               </div>
                {/* middle part */}
-               <div className='flex  gap-5'>
+               <div className='flex items-center gap-5'>
                  <div className="flex items-center w-64 gap-2 h-10 bg-white rounded-xl px-3">
                 <Search size={18} className="text-gray-500" />
 
@@ -19,10 +19,15 @@ export default function Navbar(){
                 />
                 </div>
                  {/* right part */}
-                <div className="flex items-center gap-4 ">
-                     <Bell className="cursor-pointer" />
-                    <CircleUser className="cursor-pointer" />
+                <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-full hover:bg-gray-200 cursor-pointer transition-colors">
+                            <Bell size={20} />
+                    </div>
+
+                <div className="p-2 rounded-full hover:bg-gray-200 cursor-pointer transition-colors">
+                    <CircleUser size={20} />
                 </div>
+            </div>
                </div>
              
             </div>        

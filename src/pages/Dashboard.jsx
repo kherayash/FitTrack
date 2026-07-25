@@ -1,6 +1,8 @@
 import { Flame, Zap, GlassWater, Footprints } from "lucide-react";
 import StatCard from "../components/StatCard";
 import MacrosCard from "../components/MacrosCard";
+import WeeklyActivityChart from "../components/WeeklyActivityChart";
+
 
 export default function Dashboard() {
     return (
@@ -50,9 +52,22 @@ export default function Dashboard() {
                     subtitle="of 10,000 step goal"
                     icon={Footprints}
                 />
-               <MacrosCard/>
-             
+           
+                      
+  
             </div>
+
+            <div className="grid grid-cols-3 gap-6">
+
+                    <MacrosCard />
+                    <div className="col-span-2">
+                        <WeeklyActivityChart />
+                    </div>
+
+                    
+
+            </div>
+                
 
         </div>
     );

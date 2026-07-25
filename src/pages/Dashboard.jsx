@@ -1,5 +1,6 @@
 import { Flame, Zap, GlassWater, Footprints } from "lucide-react";
 import StatCard from "../components/StatCard";
+import MacrosCard from "../components/MacrosCard";
 
 export default function Dashboard() {
     return (
@@ -49,10 +50,8 @@ export default function Dashboard() {
                     subtitle="of 10,000 step goal"
                     icon={Footprints}
                 />
-
-                <div className="bg-black text-emerald-600">
-                    Macros
-                </div>
+               <MacrosCard/>
+             
             </div>
 
         </div>

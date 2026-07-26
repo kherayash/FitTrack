@@ -20,7 +20,7 @@ export default function WeeklyActivityChart() {
     { day: "Sun", calories: 1700 },
 ];
     return (
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 transition-shadow duration-300 hover:shadow-md ">
             <h2 className="text-lg font-semibold mb-6">
                 Weekly Activity
             </h2>

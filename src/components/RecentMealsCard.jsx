@@ -33,7 +33,7 @@ export default function RecentMealsCard(){
         },
     ]
     return (
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 transition-shadow duration-300 hover:shadow-md">
 
     <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold text-slate-900">
@@ -50,28 +50,41 @@ export default function RecentMealsCard(){
         {mealData.map((item) => (
             <div
                 key={item.id}
-                className=" group flex justify-between items-center hover:bg-slate-50 transition-colors duration-200"
-            >
+               className="group flex justify-between items-center p-3 rounded-xl hover:bg-slate-50 hover:shadow-sm transition-all duration-300 cursor-pointer">
 
                 <div className="flex items-center gap-4 ">
 
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center  transition-transform duration-200 group-hover:scale-110">
-                        {item.icon}
+                    <div className="
+                                w-12 h-12
+                                rounded-xl
+                                bg-slate-100
+                                flex
+                                items-center
+                                justify-center
+                                transition-all
+                                duration-300
+                                ease-out
+                                group-hover:scale-105
+                                group-hover:bg-slate-200"> 
+                         
+                            
+                    
+                                                 {item.icon}
                     </div>
 
                     <div>
-                        <h3 className="font-semibold text-slate-900">
+                        <h3 className="font-semibold text-slate-900 transition-colors duration-300 group-hover:text-slate-700">
                             {item.food}
                         </h3>
 
-                        <p className="text-sm text-slate-500">
+                        <p className="text-sm text-slate-500 transition-colors duration-300 group-hover:text-slate-600">
                             {item.mealType} • {item.time}
                         </p>
                     </div>
 
                 </div>
 
-                <p className="font-semibold text-slate-900">
+                <p className="font-semibold text-slate-900 transition-transform duration-300 group-hover:-translate-x-1">
                     {item.calories}
                 </p>
 

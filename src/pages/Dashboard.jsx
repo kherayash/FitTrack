@@ -3,6 +3,8 @@ import StatCard from "../components/StatCard";
 import MacrosCard from "../components/MacrosCard";
 import WeeklyActivityChart from "../components/WeeklyActivityChart";
 import RecentMealsCard from "../components/RecentMealsCard";
+import RecentWorkoutCard from "../components/RecentWorkoutCard";
+import GoalProgress from "../components/GoalProgress";
 
 
 export default function Dashboard() {
@@ -71,8 +73,10 @@ export default function Dashboard() {
 
             <div className="grid grid-cols-2 gap-6">
                 <RecentMealsCard/>
+                <RecentWorkoutCard/>
             </div>
                 
+                <GoalProgress/>
 
         </div>
     );

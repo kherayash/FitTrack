@@ -3,6 +3,7 @@ export default function MacroProgress({
     current,
     goal,
     color = "emerald",
+    units = "",
 }) {
     const percentage = Math.min((current / goal) * 100, 100);
 
@@ -25,7 +26,7 @@ export default function MacroProgress({
                     <span className="font-semibold text-gray-800">
                         {current}
                     </span>
-                    /{goal}g
+                    /{goal} {units}
                 </p>
             </div>
 

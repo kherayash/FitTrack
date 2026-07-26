@@ -27,7 +27,7 @@ export default function Dashboard() {
             </div>
 
             {/* Stat Cards */}
-            <div className="grid grid-cols-4 gap-6 pl-6">
+            <div className="grid grid-cols-4 gap-6">
                 <StatCard 
                     title="Calories Consumed"
                     value="2,150"
@@ -76,7 +76,9 @@ export default function Dashboard() {
                 <RecentWorkoutCard/>
             </div>
                 
-                <GoalProgress/>
+               <div className="grid grid-cols-1">
+                    <GoalProgress />
+                </div>
 
         </div>
     );

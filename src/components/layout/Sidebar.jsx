@@ -37,7 +37,7 @@ export default function Sidebar(){
     return (
 <>
     <div>
-        <div className=" relative heading w-72 h-screen bg-white ">
+       <div className="sticky top-0 w-72 h-screen bg-white border-r border-slate-200">
             <h2 className="  flex items-center  justify-center gap-x-6 text-black px-6 py-4 tracking-wide  text-2xl font-bold">
                 <SquareActivity className="px-6"/> 
                 <span>FitTrack</span>

@@ -7,7 +7,7 @@ export default function StatCard({
     icon: Icon,
 }) {
     return (
-        <div className=" group flex flex-col gap-5 bg-white rounded-xl border border-slate-150 p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-1">  
+        <div className=" group flex flex-col gap-5 bg-white rounded-xl border border-slate-200 p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-1">  
             {/* Top Row */}
             <div className="flex justify-between items-start">
                 <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500">

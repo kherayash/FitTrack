@@ -1,7 +1,11 @@
+import { useState } from "react";
+import MealsTable from "../components/meals/MealsTable";
+import MealToolbar from "../components/meals/MealToolbar";
 import NutritionSummary from "../components/meals/NutritionSummary";
 import { Plus } from "lucide-react";
 
 export default function Meals(){
+    const [meals,setMeals] = useState([]);
     return (
           <div className="">
             {/* header section */}
@@ -22,7 +26,26 @@ export default function Meals(){
                     </button>
             </div>
                <div>
-                <NutritionSummary/>
+                <NutritionSummary meals = {meals}/>
+               </div>
+                <div className="mb-5 mt-4 ">
+                    <h2 className="text-xl font-semibold text-slate-900">
+                        Recent Meals
+                    </h2>
+
+                    <p className="mt-1 text-sm text-slate-500">
+                        Track your daily nutrition intake.
+                    </p>
+    </div>
+               <div>
+                <MealToolbar/>
+               </div>
+               
+               <div>
+                <MealsTable meals = {meals}/>
+               </div>
+               <div>
+                <AddMealModal setMeals={setMeals} />
                </div>
           </div>
     )

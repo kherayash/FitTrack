@@ -3,9 +3,10 @@ import MealsTable from "../components/meals/MealsTable";
 import MealToolbar from "../components/meals/MealToolbar";
 import NutritionSummary from "../components/meals/NutritionSummary";
 import { Plus } from "lucide-react";
-
+import AddMealModal from "../components/meals/AddMealModal";
 export default function Meals(){
     const [meals,setMeals] = useState([]);
+    const[isModalOpen, setIsModalOpen] = useState(false);
     return (
           <div className="">
             {/* header section */}
@@ -20,7 +21,10 @@ export default function Meals(){
                 </p>
                  </div>
                
-                <button className="flex items-center gap-1.5 rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-emerald-700">
+                <button className="flex items-center gap-1.5 rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-emerald-700" onClick={() => {
+    console.log("Button clicked");
+    setIsModalOpen(true);
+  }}>
                         <Plus size={16} />
                         Add Meal
                     </button>
@@ -42,10 +46,10 @@ export default function Meals(){
                </div>
                
                <div>
-                <MealsTable meals = {meals}/>
+                <MealsTable meals={meals} />
                </div>
                <div>
-                <AddMealModal setMeals={setMeals} />
+                  {isModalOpen && <AddMealModal setIsModalOpen = {setIsModalOpen} />}
                </div>
           </div>
     )

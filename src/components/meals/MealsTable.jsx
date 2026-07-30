@@ -1,4 +1,4 @@
-export default function MealsTable(meals){
+export default function MealsTable({meals}){
   
    const mealTypeColors = {
   Breakfast: "bg-yellow-100 text-yellow-700",

@@ -13,7 +13,7 @@ export default function AddMealModal({setIsModalOpen}){
             onClick={() => setIsModalOpen(false)}
             className="rounded-md p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
         >
-            ✕
+            
         </button>
     </div>
        

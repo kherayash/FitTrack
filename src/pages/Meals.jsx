@@ -7,6 +7,10 @@ import AddMealModal from "../components/meals/AddMealModal";
 export default function Meals(){
     const [meals,setMeals] = useState([]);
     const[isModalOpen, setIsModalOpen] = useState(false);
+
+    function addMeal(newMeal){
+        setMeals((prevMeals)=>[...prevMeals,newMeal]);
+    }
     return (
           <div className="">
             {/* header section */}
@@ -49,7 +53,8 @@ export default function Meals(){
                 <MealsTable meals={meals} />
                </div>
                <div>
-                  {isModalOpen && <AddMealModal setIsModalOpen = {setIsModalOpen} />}
+                  {isModalOpen && <AddMealModal setIsModalOpen = {setIsModalOpen}
+                  addMeal={addMeal} />}
                </div>
           </div>
     )

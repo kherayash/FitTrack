@@ -33,6 +33,7 @@ export default function AddMealModal({setIsModalOpen,addMeal,}){
     const carbs = selectedFood.foodNutrients.find((nutrient)=>nutrient.nutrientName==="Carbohydrate, by difference")
     const fats = selectedFood.foodNutrients.find((nutrient)=>nutrient.nutrientName==="Total lipid (fat)")
     const calories = selectedFood.foodNutrients.find((nutrient)=>nutrient.nutrientName==="Energy")
+    state
     
     const meal = {
     id: selectedFood.fdcId,

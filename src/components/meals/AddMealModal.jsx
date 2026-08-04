@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
-export default function AddMealModal({setIsModalOpen,addMeal,}){
+export default function AddMealModal({setIsModalOpen,addMeal,mode,
+    selectedMeal,updateMeal,}){
     const [search, setSearch] = useState("");
     const[results,setResults] = useState([]);
     const[loading,setLoading] = useState(false);
@@ -51,7 +52,32 @@ export default function AddMealModal({setIsModalOpen,addMeal,}){
         setIsModalOpen(false);
     }
 }
- 
+ function handleUpdateMeal() {
+
+    const updatedMeal = {
+         ...selectedMeal
+         ,type: mealType
+    };
+
+    updateMeal(updatedMeal);
+    setIsModalOpen(false);
+
+    
+
+}
+useEffect(() => {
+
+    if (selectedMeal) {
+        setSearch(selectedMeal.name);
+        setMealType(selectedMeal.type);
+    }
+    else{
+        setSearch("");
+        setMealType("Breakfast");
+        setSelectedFood(null);
+    }
+
+}, [selectedMeal]);
     return (
         
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
@@ -59,7 +85,7 @@ export default function AddMealModal({setIsModalOpen,addMeal,}){
     
     <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
         <h2 className="text-xl font-semibold text-slate-900">
-            Add Meal
+             {mode === "add" ? "Add Meal" : "Edit Meal"}
         </h2>
 
         <button
@@ -143,10 +169,10 @@ export default function AddMealModal({setIsModalOpen,addMeal,}){
     </button>
 
     <button
-        className="rounded-lg bg-emerald-600 px-5 py-2 font-medium text-white shadow-sm transition-all duration-200 hover:bg-emerald-700 hover:shadow-md active:scale-95" onClick={handleAddMeal}
+        className="rounded-lg bg-emerald-600 px-5 py-2 font-medium text-white shadow-sm transition-all duration-200 hover:bg-emerald-700 hover:shadow-md active:scale-95" onClick={mode==="add"?handleAddMeal:handleUpdateMeal}
         
     >
-        Add Meal
+         {mode === "add" ? "Add Meal" : "Save Changes"}
     </button>
 </div>
 </div>

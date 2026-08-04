@@ -22,6 +22,13 @@ const searchedMeals = filteredMeals.filter((meal)=>{
     function addMeal(newMeal){
         setMeals((prevMeals)=>[...prevMeals,newMeal]);
     }
+    function deleteMeal(deleteId){
+        setMeals((prevMeals)=>{
+            return prevMeals.filter((meal)=>{
+                return meal.id!=deleteId;
+            })
+        })
+    }
     return (
           <div className="">
             {/* header section */}
@@ -65,7 +72,9 @@ const searchedMeals = filteredMeals.filter((meal)=>{
                 </div>
                
                <div>
-                <MealsTable meals={searchedMeals} />
+                <MealsTable meals={searchedMeals} 
+                deleteMeal={deleteMeal}
+                />
                </div>
                <div>
                   {isModalOpen && <AddMealModal setIsModalOpen = {setIsModalOpen}

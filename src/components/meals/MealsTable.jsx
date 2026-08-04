@@ -1,4 +1,5 @@
-export default function MealsTable({meals}){
+import { Trash2 } from "lucide-react";
+export default function MealsTable({meals, deleteMeal }){
   
    const mealTypeColors = {
   Breakfast: "bg-yellow-100 text-yellow-700",
@@ -17,6 +18,7 @@ export default function MealsTable({meals}){
                         <th className="px-6 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wide"> Protein</th>
                         <th className="px-6 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wide"> Carbs</th>
                         <th className="px-6 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wide"> Fats</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wide">Actions</th>
                        </tr>
                         
                   
@@ -37,6 +39,14 @@ export default function MealsTable({meals}){
                             <td className="px-6 py-4">{item.protein}g</td>
                             <td className="px-6 py-4">{item.carbs}g</td>
                             <td className="px-6 py-4">{item.fats}g</td>
+                            <td className="px-6 py-4">
+    <button
+        onClick={() => deleteMeal(item.id)}
+        className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 transition-all duration-200 hover:bg-red-50 hover:text-red-600"
+    >
+        <Trash2 size={18} />
+    </button>
+</td>
                           </tr>
                      )) }
 

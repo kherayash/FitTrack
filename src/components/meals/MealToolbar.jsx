@@ -1,7 +1,9 @@
 import { Search,} from 'lucide-react';
 import { useState } from 'react';
 
-export default function MealToolbar(){
+export default function MealToolbar({
+    activeFilter , setActiveFilter,
+}){
     const filters = [
     "All",
     "Breakfast",
@@ -9,7 +11,7 @@ export default function MealToolbar(){
     "Dinner",
     "Snack",
 ];
- const[activeFilter,setActiveFilter] = useState("All")
+
 
  
     return(

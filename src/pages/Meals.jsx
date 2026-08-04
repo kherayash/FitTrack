@@ -7,7 +7,13 @@ import AddMealModal from "../components/meals/AddMealModal";
 export default function Meals(){
     const [meals,setMeals] = useState([]);
     const[isModalOpen, setIsModalOpen] = useState(false);
-
+     const[activeFilter,setActiveFilter] = useState("All")
+        const filteredMeals = meals.filter((meal) => {
+           if (activeFilter === "All") {
+                    return true;
+                }
+            return meal.type === activeFilter;
+});
     function addMeal(newMeal){
         setMeals((prevMeals)=>[...prevMeals,newMeal]);
     }
@@ -46,11 +52,12 @@ export default function Meals(){
                     </p>
     </div>
                <div>
-                <MealToolbar/>
-               </div>
+                <MealToolbar  activeFilter={activeFilter}
+                             setActiveFilter={setActiveFilter}/>
+                </div>
                
                <div>
-                <MealsTable meals={meals} />
+                <MealsTable meals={filteredMeals} />
                </div>
                <div>
                   {isModalOpen && <AddMealModal setIsModalOpen = {setIsModalOpen}

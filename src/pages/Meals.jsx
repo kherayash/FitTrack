@@ -8,12 +8,17 @@ export default function Meals(){
     const [meals,setMeals] = useState([]);
     const[isModalOpen, setIsModalOpen] = useState(false);
      const[activeFilter,setActiveFilter] = useState("All")
+     const[searchTerm,setSearchTerm] = useState("");
         const filteredMeals = meals.filter((meal) => {
            if (activeFilter === "All") {
                     return true;
                 }
             return meal.type === activeFilter;
 });
+const searchedMeals = filteredMeals.filter((meal)=>{
+    console.log(searchTerm);
+    return meal.name.toLowerCase().includes(searchTerm.toLowerCase());
+})
     function addMeal(newMeal){
         setMeals((prevMeals)=>[...prevMeals,newMeal]);
     }
@@ -53,11 +58,14 @@ export default function Meals(){
     </div>
                <div>
                 <MealToolbar  activeFilter={activeFilter}
-                             setActiveFilter={setActiveFilter}/>
+                             setActiveFilter={setActiveFilter}
+                              searchTerm={searchTerm}
+                            setSearchTerm={setSearchTerm}
+                            />
                 </div>
                
                <div>
-                <MealsTable meals={filteredMeals} />
+                <MealsTable meals={searchedMeals} />
                </div>
                <div>
                   {isModalOpen && <AddMealModal setIsModalOpen = {setIsModalOpen}

@@ -2,7 +2,7 @@ import { Search,} from 'lucide-react';
 import { useState } from 'react';
 
 export default function MealToolbar({
-    activeFilter , setActiveFilter,
+    activeFilter , setActiveFilter, searcTerm , setSearchTerm
 }){
     const filters = [
     "All",
@@ -39,6 +39,10 @@ export default function MealToolbar({
                     placeholder="Search meals..."
                     className="w-72 outline-none bg-transparent"
                     aria-label="Search meals"
+                    value={searcTerm}
+                    onChange={(e)=>{
+                        setSearchTerm(e.target.value)
+                    }}
                 />     
                   </div>
               

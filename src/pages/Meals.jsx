@@ -32,7 +32,7 @@ const searchedMeals = filteredMeals.filter((meal)=>{
         })
     }
     function handleEditMeal(meal) {
-        setMode("edit")
+        setMode("edit") mkh
     setSelectedMeal(meal);
     setIsModalOpen(true);
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MealsTable from "../components/meals/MealsTable";
 import MealToolbar from "../components/meals/MealToolbar";
 import NutritionSummary from "../components/meals/NutritionSummary";
@@ -32,7 +32,7 @@ const searchedMeals = filteredMeals.filter((meal)=>{
         })
     }
     function handleEditMeal(meal) {
-        setMode("edit") mkh
+        setMode("edit") 
     setSelectedMeal(meal);
     setIsModalOpen(true);
 }
@@ -47,6 +47,18 @@ function updateMeal(updatedMeal) {
         });
     });
 }
+
+useEffect(()=>{
+    localStorage.setItem("meals",JSON.stringify(meals));
+},[meals])
+
+useEffect(()=>{
+    const savedMeals = localStorage.getItem("meals");
+
+    if(savedMeals){
+        setMeals(JSON.parse(savedMeals));
+    }
+})
     return (
           <div className="">
             {/* header section */}

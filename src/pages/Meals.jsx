@@ -5,7 +5,10 @@ import NutritionSummary from "../components/meals/NutritionSummary";
 import { Plus } from "lucide-react";
 import AddMealModal from "../components/meals/AddMealModal";
 export default function Meals(){
-    const [meals,setMeals] = useState([]);
+    const [meals, setMeals] = useState(() => {
+    const savedMeals = localStorage.getItem("meals");
+    return savedMeals ? JSON.parse(savedMeals) : [];
+});
     const[isModalOpen, setIsModalOpen] = useState(false);
      const[activeFilter,setActiveFilter] = useState("All")
      const[searchTerm,setSearchTerm] = useState("");
@@ -48,17 +51,14 @@ function updateMeal(updatedMeal) {
     });
 }
 
+
+
 useEffect(()=>{
+     console.log("Saving to Local Storage:", meals);
     localStorage.setItem("meals",JSON.stringify(meals));
 },[meals])
 
-useEffect(()=>{
-    const savedMeals = localStorage.getItem("meals");
-
-    if(savedMeals){
-        setMeals(JSON.parse(savedMeals));
-    }
-})
+console.log("Meals State:", meals);
     return (
           <div className="">
             {/* header section */}
@@ -76,6 +76,8 @@ useEffect(()=>{
                 <button className="flex items-center gap-1.5 rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-emerald-700" onClick={() => {
     console.log("Button clicked");
     setIsModalOpen(true);
+    setSelectedMeal(null);
+    setMode("add");
   }}>
                         <Plus size={16} />
                         Add Meal

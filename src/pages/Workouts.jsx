@@ -1,51 +1,75 @@
 import WorkoutTable from "../components/workout/WorkoutTable";
 import { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
-export default function Workouts(){
+import AddWorkoutModal from "../components/workout/AddWorkoutModal";
 
- const [workouts, setWorkouts] = useState(() => {
-    const savedworkout = localStorage.getItem("workouts");
-    return savedworkout ? JSON.parse(savedworkout) : [];
-});
+export default function Workouts() {
+  const [workouts, setWorkouts] = useState(() => {
+    const saved = localStorage.getItem("workouts");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-function addWorkout(newWorkout){
-        setWorkouts((prevWorkout)=>[...prevWorkout,newWorkout]);
-    }
-    function deleteWorkout(deleteId){
-        setWorkouts((prevWorkout)=>{
-            return prevWorkout.filter((workout)=>{
-                return workout.id!=deleteId;
-            })
-        })
-    }
-useEffect(()=>{
-     console.log("Saving to Local Storage:", workout);
-    localStorage.setItem("workouts",JSON.stringify(workout));
-},[workout])
-    return (
-    
-          <div>
-            
-                 <div>
-                     <h1 className="text-4xl font-bold mt-1 tracking-tight">
-                      Workout Tracker
-                </h1>
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingWorkout, setEditingWorkout] = useState(null);
+  function deleteWorkout(id) {
+    setWorkouts((prev) => prev.filter((w) => w.id !== id));
+  }
 
-                <p className="text-gray-500 mt-2">
-                  Log workouts and explore exercises
-                </p>
-                 </div> 
-                  <button className="flex items-center gap-1.5 rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-emerald-700" onClick={() => {
-    console.log("Button clicked");
-    }}>
-         <Plus size={16} />
-                        Add Workout
-                    </button>
+  function handleEditWorkout(workout) {
+    setEditingWorkout(workout);
+    setIsModalOpen(true);
+  }
+  function addWorkout(newWorkout) {
+    setWorkouts((prevWorkouts) => [
+        ...prevWorkouts,
+        newWorkout
+    ]);
+}
+function updateWorkout(updatedWorkout) {
+    setWorkouts((prevWorkouts) => {
+        return prevWorkouts.map((workout) => {
+            if (workout.id === updatedWorkout.id) {
+                return updatedWorkout;
+            }
 
-                 <div>
-                    <WorkoutTable workouts={workouts}/>
-                 </div>
-          </div>
-                          
-    )
+            return workout;
+        });
+    });
+}
+
+  useEffect(() => {
+    localStorage.setItem("workouts", JSON.stringify(workouts));
+  }, [workouts]);
+
+  return (
+    <div>
+      <h1 className="text-4xl font-bold mt-1">Workout Tracker</h1>
+      <p className="text-gray-500 mt-2">Log workouts and explore exercises</p>
+
+      <button
+        className="flex items-center gap-1.5 bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white rounded-md hover:bg-emerald-700"
+        onClick={() => {
+          setEditingWorkout(null);
+          setIsModalOpen(true);
+        }}
+      >
+        <Plus size={16} /> Add Workout
+      </button>
+
+      <WorkoutTable
+        workouts={workouts}
+        deleteWorkout={deleteWorkout}
+        handleEditWorkout={handleEditWorkout}
+      />
+
+      {isModalOpen && (
+        <AddWorkoutModal
+          setIsModalOpen={setIsModalOpen}
+          addWorkout={addWorkout}
+          editingWorkout={editingWorkout}
+          updateWorkout={updateWorkout}
+        />
+      )}
+    </div>
+  );
 }
